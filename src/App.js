@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
 
 function App() {
+  let currentDate = new Date();
+  let currentYear = currentDate.getFullYear();
+  let startOfYear = new Date(currentYear, 0, 0);
+  let difference = currentDate - startOfYear;
+  let dayOfYear = Math.floor(difference / 86400000);
+  let numberOfDaysInYear = currentYear % 4 == 0 ? 366 : 365;
+  let percentOfYear = ((dayOfYear / numberOfDaysInYear) * 100).toFixed(2);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>
+        {currentYear} is <h1 className="blueText">{percentOfYear}%</h1> over.
+      </h1>
     </div>
   );
 }
